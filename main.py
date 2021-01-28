@@ -1,4 +1,5 @@
 import classes
+import sys
 import pygame
 pygame.init()
 
@@ -37,8 +38,9 @@ GAME_LOOP = True
 while GAME_LOOP:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            pygame.quit()
             GAME_LOOP = False
+            pygame.quit()
+            sys.exit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE and y == FLOOR:
                 JUMPING = True
@@ -66,6 +68,4 @@ while GAME_LOOP:
 
     pygame.display.update()
     clock.tick(FPS)
-
-pygame.quit()
 
