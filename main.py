@@ -1,3 +1,4 @@
+import classes
 import pygame
 pygame.init()
 
@@ -25,7 +26,7 @@ BLACK = (0, 0, 0)
 FLOOR = HEIGHT // 2 + 100
 x, y = 0, FLOOR
 speed_move = 5
-speed_jump = 2
+speed_jump = 4
 height_jump = FLOOR - 70
 
 clock = pygame.time.Clock()
@@ -46,9 +47,9 @@ while GAME_LOOP:
 
     # Move(right or left)
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_RIGHT] and x < WIDTH - 20:
+    if (keys[pygame.K_RIGHT] or keys[pygame.K_d]) and x < WIDTH - 20:
         x += speed_move
-    elif keys[pygame.K_LEFT] and x > 0:
+    elif (keys[pygame.K_LEFT] or keys[pygame.K_a]) and x > 0:
         x -= speed_move
 
     # Jumping
@@ -65,4 +66,6 @@ while GAME_LOOP:
 
     pygame.display.update()
     clock.tick(FPS)
+
+pygame.quit()
 
