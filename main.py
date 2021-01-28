@@ -9,26 +9,26 @@ icon_image = pygame.image.load(path_to_images + r"kung_fu_panda_icon.jpg")
 # Window/Screen
 WIDTH = 900
 HEIGHT = 600
+FPS = 60
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 pygame.display.set_icon(icon_image)
 pygame.display.set_caption("Kung fu panda")
 
-# Some constants
-FPS = 60
-clock = pygame.time.Clock()
-
+# Colors
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 BLACK = (0, 0, 0)
 
+# Some constants
 FLOOR = HEIGHT // 2 + 100
 x, y = 0, FLOOR
 speed_move = 5
+speed_jump = 2
 height_jump = FLOOR - 70
-speed_jump = 3
 
+clock = pygame.time.Clock()
 JUMPING = False
 GAME_LOOP = True
 
@@ -62,7 +62,7 @@ while GAME_LOOP:
 
     screen.fill(BLACK)
     pygame.draw.rect(screen, BLUE, (x, y, 20, 50))
-    pygame.display.update()
 
+    pygame.display.update()
     clock.tick(FPS)
 
