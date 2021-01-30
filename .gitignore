@@ -1,3 +1,5 @@
 *.[oa]
+*.pyc
+*.DS_STORE
 *~
 !lib.a
