@@ -13,9 +13,12 @@ pygame.display.set_icon(icon)
 # Objects
 background = classes.Background(background_image)
 ground = classes.Ground(ground_image)
+ground_group = pygame.sprite.Group()
+ground_group.add(ground)
 player = classes.Player()
 
 while GAME_LOOP:
+    player.gravity_check(ground_group)
     for event in pygame.event.get():
         # Will run when the close window button is clicked
         if event.type == pygame.QUIT:
@@ -27,7 +30,7 @@ while GAME_LOOP:
         # Event handling for a range of different key presses
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_z:
-                player.jump()
+                player.jump(ground_group)
 
     # Actions
     player.update()

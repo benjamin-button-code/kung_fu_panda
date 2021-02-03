@@ -42,7 +42,7 @@ class Player(pygame.sprite.Sprite):
         self.direction = "RIGHT"
 
     def move(self):
-        self.acc = vector(0, 0)
+        self.acc = vector(0, 0.5)
         if abs(self.vel.x) >= 0.5:
             self.is_running = True
             self.is_stay = False
@@ -98,17 +98,23 @@ class Player(pygame.sprite.Sprite):
                 self.image = run_ani_L[self.move_frame]
             self.move_frame += 1
 
-    def punch(self):
+    def food_attack(self):
         pass
 
-    def kick(self):
-        pass
+    def jump(self, ground_group):
+        # Check to see player contact with the ground
+        hits = pygame.sprite.spritecollide(self, ground_group, False)
+        if hits and not self.is_jumping:
+            self.is_jumping = True
+            self.vel.y = -12
 
-    def jump(self):
-        pass
-
-    def gravity_check(self):
-        pass
+    def gravity_check(self, ground_group):
+        hits = pygame.sprite.spritecollide(self, ground_group, False)
+        if self.vel.y > 0:
+            if hits:
+                self.pos.y = hits[0].rect.top + 1
+                self.is_jumping = False
+                self.vel.y = 0
 
 
 class Enemies(pygame.sprite.Sprite):
