@@ -13,6 +13,7 @@ pygame.display.set_icon(icon)
 # Objects
 background = classes.Background(background_image)
 ground = classes.Ground(ground_image)
+player = classes.Player()
 
 while GAME_LOOP:
     for event in pygame.event.get():
@@ -25,11 +26,17 @@ while GAME_LOOP:
             pass
         # Event handling for a range of different key presses
         elif event.type == pygame.KEYDOWN:
-            pass
+            if event.key == pygame.K_z:
+                player.jump()
 
+    # Actions
+    player.update()
+    player.move()
     # Draw
     background.render()
     ground.render()
+    player.update()
+    display_surface.blit(player.image, player.rect)
 
     pygame.display.update()
     FPS_CLOCK.tick(FPS)
